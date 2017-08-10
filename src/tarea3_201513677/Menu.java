@@ -12,13 +12,13 @@ public final  class Menu {
         Opciones = 0;
         NoUsuario = "";  
         Usuarios = new String[5];
-        
+        //Menu principal 
         do {
-            System.out.println("           Tarea3           ");
-            System.out.println("         201513677          ");
-            System.out.println(" 1. Usuarios                ");
-            System.out.println(" 2. Palabras Palíndromas    ");
-            System.out.println(" 3. Salir                   ");    
+            System.out.println("               TAREA.3               ");
+            System.out.println(" -----------> 201513677 <----------- ");
+            System.out.println(" 1. Usuarios                         ");
+            System.out.println(" 2. Palabras Palíndromas             ");
+            System.out.println(" 3. Salir                            ");    
             Scanner leer = new Scanner(System.in);
             Opciones = leer.nextInt();
             switch(Opciones){
@@ -37,6 +37,7 @@ public final  class Menu {
             }
         } while (Opciones != 3);
     }
+    //Menu secundario
     private void MenuUs(){
         System.out.println("            Menu de Usuarios             ");
         System.out.println(" 1. Ingresar Usuarios                    ");
@@ -86,30 +87,35 @@ public final  class Menu {
         MenuUs();
     }
     
+    //Buscar un usuario para el menu personalizado 
     
+        public String buscar(String us) {
+        for (int i = 0; i < Usuarios.length; i++) {
+            if(Usuarios[i].equals(us)){
+                return "v";
+            }
+           
+        }
+        return "f";
+    }
+     //Mostrar el usuario encontrado de la busqueda        
     public void UsuarioP(){
-        System.out.println("     Mostrar un Usuario Personalizado     ");
-        System.out.println("              Ingrese Usuario:            ");
+        System.out.println("  Mostrar un Usuario Personalizado  ");
+        System.out.println("       Ingrese un Usuario:          ");
         Scanner usper = new Scanner(System.in);
         NoUsuario = usper.nextLine();
-        for (int i = 0; i < Usuarios.length; i++) {
-            
-            if (Usuarios[i].equals(NoUsuario)) {
-                System.out.println("          Usuario            ");
-                System.out.println(Usuarios[i]);
-
-            } else if( i+1==5) {
-                System.err.println("!!Error!! no existe ningun usuario con esa coincidencia");
-                
-            }    
+        if(!buscar(NoUsuario).equals("f")){
+            System.out.println("          Usuario:           ");
+            System.out.println(NoUsuario);
+        } else{
+            System.err.println("  ERROR!!!! no existe ningun usuario con esa coincidencia  ");
         }
-        
-        
+       
         MenuUs();
     }
-        
-    public void PalabrasPalindromas(){
     
+    //Opcion de palabras palindromas busqueda y mostrar las palbras        
+    public void PalabrasPalindromas(){
         String palabra;
         Scanner sc = new Scanner(System.in);
         System.out.println("*************Palabras Palindromas***************");
@@ -121,7 +127,6 @@ public final  class Menu {
         }else{
             System.out.println(" ''''''''' NO ES PALINDROMA '''''''''   ");
         }
-
      }
     
     public static boolean comparacionpalindroma(String palab){
